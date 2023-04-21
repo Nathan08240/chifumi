@@ -12,7 +12,7 @@ describe("History", () => {
   });
 
   it("should add new history to the list", () => {
-    const newHistory = "Player chose Rock, Computer chose Paper";
+    const newHistory: string = "Player chose Rock, Computer chose Paper";
     history.addHistory(newHistory);
     expect(history.getHistory()).toContain(newHistory);
   });
