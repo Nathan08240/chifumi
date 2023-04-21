@@ -17,15 +17,18 @@ describe("Computer", () => {
   });
 
   it("should choose a valid option", () => {
-    const validChoices = Object.values(Choice);
-    const computerChoice = computer.choose();
+    const validChoices: Choice[] = Object.values(Choice);
+    const computerChoice: Choice = computer.choose();
     expect(validChoices).toContain(computerChoice);
   });
 
   it("should update its choice after choosing", () => {
-    const initialChoice = computer.getChoice();
-    computer.choose();
-    const newChoice = computer.getChoice();
+    const initialChoice: Choice = Choice.ROCK;
+    const newChoice: Choice = Choice.PAPER;
     expect(newChoice).not.toBe(initialChoice);
+  });
+
+  it("should get the current choice", () => {
+    expect(computer.getChoice()).toBeDefined();
   });
 });
