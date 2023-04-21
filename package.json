@@ -2,7 +2,7 @@
   "name": "test_exo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node index.ts"
@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/chalk": "^2.2.0",
+    "chalk": "^5.2.0",
     "colors": "^1.4.0",
     "readline-sync": "^1.4.10",
     "ts-node": "^10.9.1",
