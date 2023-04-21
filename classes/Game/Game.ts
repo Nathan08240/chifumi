@@ -1,18 +1,14 @@
 import { Computer } from "../Player/Computer";
-import { Choice } from "../../Enum/Choice";
+import { Choice } from "../../enums/Choice";
 import { Player } from "../Player/Player";
 import { History } from "../History/History";
 
 class Game {
-  pointHistory = new History();
-  choiceHistory = new History();
+  private pointHistory = new History();
+  private choiceHistory = new History();
 
   checkScore = (player1: Player, player2: Player): boolean => {
-    let check: boolean = false;
-    if (player1.getPoints() === 3 || player2.getPoints() === 3) {
-      check = true;
-    }
-    return check;
+    return player1.getPoints() === 2 || player2.getPoints() === 2;
   };
 
   displayScore = (player1: Player, player2: Player) => {
@@ -32,16 +28,16 @@ class Game {
     console.log("");
 
     const computerPlayer1 = new Computer();
-    const ComputerPlayer2 = new Computer();
+    const computerPlayer2 = new Computer();
 
-    while (!this.checkScore(computerPlayer1, ComputerPlayer2)) {
-      let choice1 = computerPlayer1.choose();
-      let choice2 = ComputerPlayer2.choose();
+    while (!this.checkScore(computerPlayer1, computerPlayer2)) {
+      const choice1: Choice = computerPlayer1.choose();
+      const choice2: Choice = computerPlayer2.choose();
 
       if (choice1 === choice2) {
         console.log("It's a tie!".bgGreen.black.bold);
         this.choiceHistory.addHistory(
-          `Player 1: ${computerPlayer1.getChoice()} | Player 2: ${ComputerPlayer2.getChoice()} -> Tie`
+          `Player 1: ${computerPlayer1.getChoice()} | Player 2: ${computerPlayer2.getChoice()} -> Tie`
         );
       } else if (
         (choice1 === Choice.ROCK && choice2 === Choice.SCISSORS) ||
@@ -51,21 +47,21 @@ class Game {
         console.log("Player 1 wins!".bgRed.black.bold);
         computerPlayer1.addPoint();
         this.choiceHistory.addHistory(
-          `Player 1: ${computerPlayer1.getChoice()} | Player 2: ${ComputerPlayer2.getChoice()} -> Winner: Player 1`
+          `Player 1: ${computerPlayer1.getChoice()} | Player 2: ${computerPlayer2.getChoice()} -> Winner: Player 1`
         );
       } else {
         console.log("Player 2 wins!".bgBlue.black.bold);
-        ComputerPlayer2.addPoint();
+        computerPlayer2.addPoint();
         this.choiceHistory.addHistory(
-          `Player 1: ${computerPlayer1.getChoice()} | Player 2: ${ComputerPlayer2.getChoice()} -> Winner: Player 2`
+          `Player 1: ${computerPlayer1.getChoice()} | Player 2: ${computerPlayer2.getChoice()} -> Winner: Player 2`
         );
       }
 
       this.pointHistory.addHistory(
-        `Player 1: ${computerPlayer1.getPoints()} | Player 2: ${ComputerPlayer2.getPoints()}`
+        `Player 1: ${computerPlayer1.getPoints()} | Player 2: ${computerPlayer2.getPoints()}`
       );
 
-      this.displayScore(computerPlayer1, ComputerPlayer2);
+      this.displayScore(computerPlayer1, computerPlayer2);
     }
 
     console.log("History of choices:".bgGreen.black.bold);
@@ -76,7 +72,7 @@ class Game {
     this.pointHistory.displayHistory();
     console.log("");
 
-    if (computerPlayer1.getPoints() === 3) {
+    if (computerPlayer1.getPoints() === 2) {
       return "Player 1 wins the game!".bgRed.black;
     }
 

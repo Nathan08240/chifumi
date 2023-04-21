@@ -1,5 +1,5 @@
 import * as colors from "colors";
-import { Game } from "./Class/Game/Game";
+import { Game } from "./classes/Game/Game";
 
 colors.enable();
 const game = new Game();

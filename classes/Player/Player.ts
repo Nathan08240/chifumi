@@ -1,4 +1,4 @@
-import { Choice } from "../../Enum/Choice";
+import { Choice } from "../../enums/Choice";
 
 export abstract class Player {
   abstract choose(): Choice;
