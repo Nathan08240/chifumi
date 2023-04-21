@@ -3,12 +3,16 @@ import { Choice } from "../../enums/Choice";
 import { Player } from "../Player/Player";
 import { History } from "../History/History";
 
+const MAX_POINTS = 2;
+
 class Game {
   private pointHistory = new History();
   private choiceHistory = new History();
 
   checkScore = (player1: Player, player2: Player): boolean => {
-    return player1.getPoints() === 2 || player2.getPoints() === 2;
+    return (
+      player1.getPoints() === MAX_POINTS || player2.getPoints() === MAX_POINTS
+    );
   };
 
   displayScore = (player1: Player, player2: Player) => {
@@ -23,7 +27,7 @@ class Game {
     console.log("");
   };
 
-  play(): string {
+  play() {
     console.log("Welcome to Rock Paper Scissors!".bgGreen.black.italic.bold);
     console.log("");
 
@@ -72,11 +76,11 @@ class Game {
     this.pointHistory.displayHistory();
     console.log("");
 
-    if (computerPlayer1.getPoints() === 2) {
-      return "Player 1 wins the game!".bgRed.black;
+    if (computerPlayer1.getPoints() === MAX_POINTS) {
+      console.log("Player 1 wins the game!".bgRed.black);
     }
 
-    return "Player 2 wins the game!".bgBlue.black;
+    console.log("Player 2 wins the game!".bgBlue.black);
   }
 }
 

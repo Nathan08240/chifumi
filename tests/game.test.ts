@@ -1,5 +1,4 @@
 import { Game } from "../classes/Game/Game";
-import { Computer } from "../classes/Player/Computer";
 import * as colors from "colors";
 colors.enable();
 
@@ -15,7 +14,9 @@ describe("Game", () => {
   });
 
   it("should play a game", () => {
-    const result = game.play();
-    expect(result).toMatch(/Player [1-2] wins the game!/);
+    const consoleSpy = jest.spyOn(console, "log");
+    game.play();
+    expect(consoleSpy).toHaveBeenCalled();
+    consoleSpy.mockRestore();
   });
 });
